@@ -8,11 +8,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#000;--s2:#111;--s3:#1a1a1a;
-  --b1:#1f1f1f;--b2:#2a2a2a;
+  --bg:#000;--s2:#111;--s3:#1a1a1a;--b1:#1f1f1f;--b2:#2a2a2a;
   --t:#fff;--t2:#a0a0a0;--t3:#555;
-  --g:#1DB954;--gd:rgba(29,185,84,0.13);
-  --r:10px;--rs:6px;
+  --g:#1DB954;--gd:rgba(29,185,84,0.13);--r:10px;--rs:6px;
 }
 html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;font-size:14px;min-height:100vh;-webkit-font-smoothing:antialiased}
 .page{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:0 16px 80px}
@@ -26,19 +24,29 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
 .sb input{flex:1;background:none;border:none;outline:none;color:var(--t);font-family:'Inter',sans-serif;font-size:15px;padding:13px 0;caret-color:var(--g)}
 .sb input::placeholder{color:var(--t3)}
 .sbtn{background:var(--g);border:none;border-radius:50px;padding:9px 22px;color:#000;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s,transform .1s;white-space:nowrap;flex-shrink:0}
-.sbtn:hover{background:#1ed760}
-.sbtn:active{transform:scale(.97)}
-.sbtn:disabled{opacity:.4;cursor:default}
+.sbtn:hover{background:#1ed760}.sbtn:active{transform:scale(.97)}.sbtn:disabled{opacity:.4;cursor:default}
 .tabs{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .tab{padding:6px 14px;border-radius:50px;border:1px solid var(--b2);background:transparent;color:var(--t2);font-size:12px;font-family:'Inter',sans-serif;font-weight:500;cursor:pointer;transition:all .15s}
-.tab:hover{border-color:var(--t3);color:var(--t)}
-.tab.on{background:var(--g);border-color:var(--g);color:#000}
+.tab:hover{border-color:var(--t3);color:var(--t)}.tab.on{background:var(--g);border-color:var(--g);color:#000}
 .loader{display:none;align-items:center;gap:6px;color:var(--t3);font-size:13px;margin-bottom:20px}
 .loader.on{display:flex}
 .dot{width:5px;height:5px;border-radius:50%;background:var(--g);animation:bop 1.2s infinite}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
 @keyframes bop{0%,80%,100%{transform:scale(.6);opacity:.3}40%{transform:scale(1);opacity:1}}
 .status{color:var(--t3);font-size:12px;margin-bottom:20px;text-align:center;min-height:16px}
+.setup-box{background:var(--s2);border:1px solid var(--b2);border-radius:var(--r);padding:20px 24px;max-width:520px;width:100%;margin-bottom:24px}
+.setup-box h3{font-size:13px;font-weight:600;color:var(--t);margin-bottom:12px}
+.setup-box p{font-size:12px;color:var(--t3);line-height:1.7;margin-bottom:12px}
+.setup-box ol{font-size:12px;color:var(--t2);line-height:2;padding-left:18px}
+.setup-box ol li span{color:var(--t)}
+.setup-input{display:flex;gap:8px;margin-top:14px}
+.setup-input input{flex:1;background:var(--s3);border:1px solid var(--b2);border-radius:6px;padding:9px 12px;color:var(--t);font-family:'Inter',sans-serif;font-size:12px;outline:none}
+.setup-input input:focus{border-color:var(--g)}
+.setup-input input::placeholder{color:var(--t3)}
+.save-btn{background:var(--g);border:none;border-radius:6px;padding:9px 16px;color:#000;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.save-btn:hover{background:#1ed760}
+.worker-status{font-size:11px;margin-top:8px;min-height:16px}
+.worker-status.ok{color:var(--g)}.worker-status.err{color:#e55}
 .results{width:100%;max-width:860px}
 .section{margin-bottom:38px}
 .sec-title{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--t3);text-transform:uppercase;margin-bottom:14px;border-left:2px solid var(--g);padding-left:10px}
@@ -55,9 +63,7 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
 .ac:hover{background:var(--s3)}
 .av{width:76px;height:76px;border-radius:50%;overflow:hidden;margin:0 auto 10px;border:1px solid var(--b2);background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:28px}
 .av img{width:100%;height:100%;object-fit:cover;display:block}
-.an{font-size:13px;font-weight:600;margin-bottom:3px}
-.af{font-size:11px;color:var(--g);font-weight:500}
-.ag{font-size:10px;color:var(--t3);margin-top:2px}
+.an{font-size:13px;font-weight:600;margin-bottom:3px}.af{font-size:11px;color:var(--g);font-weight:500}.ag{font-size:10px;color:var(--t3);margin-top:2px}
 .tr{display:flex;align-items:center;gap:12px;padding:7px 10px;border-radius:var(--rs);cursor:pointer;transition:background .12s;text-decoration:none;color:inherit}
 .tr:hover{background:var(--s2)}
 .tn{width:20px;text-align:right;color:var(--t3);font-size:12px;flex-shrink:0}
@@ -70,8 +76,6 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
 .et{background:var(--b2);color:var(--t3);font-size:9px;font-weight:700;padding:1px 4px;border-radius:2px;flex-shrink:0}
 .empty{text-align:center;color:var(--t3);padding:60px 20px;font-size:14px;line-height:1.6}
 .ei{margin-bottom:12px;opacity:.25}
-.err-hint{font-size:11px;color:var(--t3);margin-top:8px;line-height:1.5}
-.err-hint a{color:var(--g);text-decoration:none}
 @media(max-width:480px){.grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
 </style>
 </head>
@@ -82,6 +86,24 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#1DB954"/><path d="M17.48 10.67c-2.76-1.64-7.32-1.79-9.96-.99-.42.13-.87-.11-1-.53-.13-.42.11-.87.53-1 3.06-.93 8.14-.75 11.35 1.15.38.23.51.72.28 1.1-.22.37-.72.5-1.1.27zm-.1 2.77c-.2.32-.61.42-.93.22-2.3-1.41-5.81-1.82-8.53-.99-.35.1-.72-.09-.82-.44-.1-.35.09-.72.44-.82 3.11-.94 6.97-.49 9.61 1.13.32.2.42.61.23.9zm-1.06 2.66c-.16.26-.5.34-.76.18-2.01-1.23-4.54-1.5-7.52-.82-.28.07-.57-.1-.64-.39-.06-.28.1-.57.38-.64 3.26-.75 6.06-.43 8.3.95.27.16.35.5.24.72z" fill="#000"/></svg>
       <span class="badge-txt">via Spotify</span>
     </div>
+  </div>
+
+  <!-- SETUP BOX — hidden after worker URL saved -->
+  <div class="setup-box" id="setup">
+    <h3>One-time setup — Cloudflare Worker</h3>
+    <p>Needed to bypass CORS on mobile. Free, takes 2 minutes.</p>
+    <ol>
+      <li>Go to <span>dash.cloudflare.com</span> → sign up free</li>
+      <li>Workers &amp; Pages → Create → Create Worker</li>
+      <li>Delete default code, paste the <span>worker.js</span> from this repo</li>
+      <li>Deploy → copy URL <span>(https://xxx.workers.dev)</span></li>
+      <li>Paste below ↓</li>
+    </ol>
+    <div class="setup-input">
+      <input id="wurl" type="url" placeholder="https://your-worker.workers.dev"/>
+      <button class="save-btn" onclick="saveWorker()">Save</button>
+    </div>
+    <div class="worker-status" id="wstatus"></div>
   </div>
 
   <div class="sw">
@@ -110,47 +132,60 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
-   Spotify Anonymous Search — standalone HTML
-   Auth: open.spotify.com anonymous token (no OAuth needed)
-   CORS: tried direct first, then public proxy fallbacks
-   Works in Safari, Chrome, Firefox when opened as file or
-   hosted on GitHub Pages / any static host.
-   ═══════════════════════════════════════════════════════════ */
+let token = null, tokenExp = 0, currentFilter = 'all';
+let WORKER = localStorage.getItem('sp_worker') || '';
 
-let token = null;
-let tokenExp = 0;
-let currentFilter = 'all';
-
-// CORS proxies — tried in sequence until one works
-const PROXIES = [
-  u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
-  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  u => `https://thingproxy.freeboard.io/fetch/${u}`,
-  u => u  // direct last (works if CORS disabled or extension present)
-];
-
-async function fetchWithProxy(url, opts = {}, timeoutMs = 7000) {
-  for (const proxy of PROXIES) {
-    const pUrl = proxy(url);
-    try {
-      const ctrl = new AbortController();
-      const tid = setTimeout(() => ctrl.abort(), timeoutMs);
-      const r = await fetch(pUrl, { ...opts, signal: ctrl.signal });
-      clearTimeout(tid);
-      if (r.ok) return r;
-    } catch(e) { /* next */ }
+// init
+(function init() {
+  if (WORKER) {
+    document.getElementById('setup').style.display = 'none';
+    document.getElementById('wurl').value = WORKER;
   }
-  throw new Error('All proxies failed — check internet connection');
+})();
+
+function saveWorker() {
+  const val = document.getElementById('wurl').value.trim().replace(/\/$/, '');
+  if (!val || !val.startsWith('http')) {
+    document.getElementById('wstatus').textContent = 'paste a valid URL';
+    document.getElementById('wstatus').className = 'worker-status err';
+    return;
+  }
+  document.getElementById('wstatus').textContent = 'testing…';
+  document.getElementById('wstatus').className = 'worker-status';
+
+  // test the worker
+  const testUrl = val + '?url=' + encodeURIComponent('https://open.spotify.com/get_access_token?reason=transport&productType=web_player');
+  fetch(testUrl, { signal: AbortSignal.timeout(6000) })
+    .then(r => r.json())
+    .then(d => {
+      if (d.accessToken) {
+        WORKER = val;
+        localStorage.setItem('sp_worker', val);
+        document.getElementById('wstatus').textContent = '✓ connected — worker works';
+        document.getElementById('wstatus').className = 'worker-status ok';
+        setTimeout(() => { document.getElementById('setup').style.display = 'none'; }, 1200);
+      } else {
+        throw new Error('no token');
+      }
+    })
+    .catch(() => {
+      document.getElementById('wstatus').textContent = '✗ worker not reachable — check URL';
+      document.getElementById('wstatus').className = 'worker-status err';
+    });
+}
+
+async function proxyFetch(targetUrl, opts = {}) {
+  if (!WORKER) throw new Error('Set up Cloudflare Worker first ↑');
+  const url = WORKER + '?url=' + encodeURIComponent(targetUrl);
+  const r = await fetch(url, { ...opts, signal: AbortSignal.timeout(8000) });
+  return r;
 }
 
 async function getToken() {
   if (token && Date.now() < tokenExp) return token;
-  const r = await fetchWithProxy(
-    'https://open.spotify.com/get_access_token?reason=transport&productType=web_player'
-  );
+  const r = await proxyFetch('https://open.spotify.com/get_access_token?reason=transport&productType=web_player');
   const d = await r.json();
-  if (!d.accessToken) throw new Error('No token in Spotify response');
+  if (!d.accessToken) throw new Error('No token');
   token = d.accessToken;
   tokenExp = Date.now() + 50 * 60 * 1000;
   return token;
@@ -159,19 +194,16 @@ async function getToken() {
 async function searchSpotify(q, types) {
   const tk = await getToken();
   const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(q)}&type=${types}&limit=12&market=US`;
-  const r = await fetchWithProxy(url, {
-    headers: { 'Authorization': `Bearer ${tk}` }
-  });
-  if (r.status === 401) { token = null; tokenExp = 0; throw new Error('Token expired, retry'); }
+  const r = await proxyFetch(url, { headers: { 'Authorization': `Bearer ${tk}` } });
+  if (r.status === 401) { token = null; throw new Error('Token expired, retry'); }
   const data = await r.json();
-  if (data.error) throw new Error(data.error.message || 'Spotify API error');
+  if (data.error) throw new Error(data.error.message || 'Spotify error');
   return data;
 }
 
 function setFilter(el, f) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  el.classList.add('on');
-  currentFilter = f;
+  el.classList.add('on'); currentFilter = f;
 }
 
 async function doSearch() {
@@ -184,24 +216,13 @@ async function doSearch() {
   btn.disabled = true; loader.classList.add('on');
   status.textContent = ''; results.innerHTML = '';
   try {
-    const tm = {
-      all: 'track,album,playlist,artist',
-      track: 'track', album: 'album',
-      playlist: 'playlist', artist: 'artist'
-    };
+    const tm = { all:'track,album,playlist,artist', track:'track', album:'album', playlist:'playlist', artist:'artist' };
     const data = await searchSpotify(q, tm[currentFilter] || 'track,album,playlist,artist');
     loader.classList.remove('on'); btn.disabled = false;
     renderResults(data, q);
   } catch(e) {
     loader.classList.remove('on'); btn.disabled = false;
-    results.innerHTML = `<div class="empty">
-      <div class="ei">⚠️</div>
-      ${esc(e.message)}
-      <div class="err-hint">
-        Try opening with a <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf" target="_blank">CORS extension</a>
-        or host on <a href="https://pages.github.com" target="_blank">GitHub Pages</a>.
-      </div>
-    </div>`;
+    results.innerHTML = `<div class="empty"><div class="ei">⚠️</div>${esc(e.message)}</div>`;
   }
 }
 
@@ -213,14 +234,13 @@ function renderResults(data, q) {
   const results = document.getElementById('results');
   const status = document.getElementById('status');
   let html = '', total = 0;
-
-  const tracks = data.tracks?.items?.filter(Boolean) || [];
+  const tracks = data.tracks?.items?.filter(Boolean)||[];
   if (tracks.length) {
     total += tracks.length;
     html += `<div class="section"><div class="sec-title">Tracks</div><div class="lst">`;
     tracks.forEach((t,i) => {
-      const im = (t.album?.images||[])[0]?.url||'';
-      const ar = (t.artists||[]).map(a=>a.name).join(', ');
+      const im=(t.album?.images||[])[0]?.url||'';
+      const ar=(t.artists||[]).map(a=>a.name).join(', ');
       html += `<a class="tr" href="https://open.spotify.com/track/${t.id}" target="_blank" rel="noopener">
         <span class="tn">${i+1}</span>
         <div class="tt">${im?`<img src="${esc(im)}" loading="lazy">`:'♪'}</div>
@@ -231,13 +251,12 @@ function renderResults(data, q) {
     });
     html += `</div></div>`;
   }
-
-  const artists = data.artists?.items?.filter(Boolean) || [];
+  const artists = data.artists?.items?.filter(Boolean)||[];
   if (artists.length) {
     total += artists.length;
     html += `<div class="section"><div class="sec-title">Artists</div><div class="grid">`;
     artists.forEach(a => {
-      const im = (a.images||[])[0]?.url||'';
+      const im=(a.images||[])[0]?.url||'';
       html += `<a class="ac" href="https://open.spotify.com/artist/${a.id}" target="_blank" rel="noopener">
         <div class="av">${im?`<img src="${esc(im)}" loading="lazy">`:'👤'}</div>
         <div class="an">${esc(a.name)}</div>
@@ -247,14 +266,13 @@ function renderResults(data, q) {
     });
     html += `</div></div>`;
   }
-
-  const albums = data.albums?.items?.filter(Boolean) || [];
+  const albums = data.albums?.items?.filter(Boolean)||[];
   if (albums.length) {
     total += albums.length;
     html += `<div class="section"><div class="sec-title">Albums</div><div class="grid">`;
     albums.forEach(a => {
-      const im = (a.images||[])[0]?.url||'';
-      const ar = (a.artists||[]).map(x=>x.name).join(', ');
+      const im=(a.images||[])[0]?.url||'';
+      const ar=(a.artists||[]).map(x=>x.name).join(', ');
       html += `<a class="card" href="https://open.spotify.com/album/${a.id}" target="_blank" rel="noopener">
         <div class="ci">${im?`<img src="${esc(im)}" loading="lazy">`:'💿'}</div>
         <div class="cb"><div class="cn">${esc(a.name)}</div><div class="cs">${esc(ar)}${a.release_date?' · '+a.release_date.slice(0,4):''}</div></div>
@@ -262,13 +280,12 @@ function renderResults(data, q) {
     });
     html += `</div></div>`;
   }
-
-  const playlists = (data.playlists?.items||[]).filter(Boolean);
+  const playlists=(data.playlists?.items||[]).filter(Boolean);
   if (playlists.length) {
     total += playlists.length;
     html += `<div class="section"><div class="sec-title">Playlists</div><div class="grid">`;
     playlists.forEach(p => {
-      const im = (p.images||[])[0]?.url||'';
+      const im=(p.images||[])[0]?.url||'';
       html += `<a class="card" href="https://open.spotify.com/playlist/${p.id}" target="_blank" rel="noopener">
         <div class="ci">${im?`<img src="${esc(im)}" loading="lazy">`:'🎵'}</div>
         <div class="cb"><div class="cn">${esc(p.name)}</div><div class="cs">${p.owner?.display_name?'by '+esc(p.owner.display_name):''}${p.tracks?.total?' · '+p.tracks.total+' tracks':''}</div></div>
@@ -276,18 +293,12 @@ function renderResults(data, q) {
     });
     html += `</div></div>`;
   }
-
-  if (!html) {
-    results.innerHTML = `<div class="empty"><div class="ei">🔍</div>No results for "${esc(q)}"</div>`;
-    return;
-  }
+  if (!html) { results.innerHTML=`<div class="empty"><div class="ei">🔍</div>No results for "${esc(q)}"</div>`; return; }
   status.textContent = `${total} results`;
   results.innerHTML = html;
 }
 
-document.getElementById('q').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doSearch();
-});
+document.getElementById('q').addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
 </script>
 </body>
 </html>
