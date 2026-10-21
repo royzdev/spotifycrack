@@ -88,7 +88,23 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
     </div>
   </div>
 
-
+  <!-- SETUP BOX — hidden after worker URL saved -->
+  <div class="setup-box" id="setup">
+    <h3>One-time setup — Cloudflare Worker</h3>
+    <p>Needed to bypass CORS on mobile. Free, takes 2 minutes.</p>
+    <ol>
+      <li>Go to <span>dash.cloudflare.com</span> → sign up free</li>
+      <li>Workers &amp; Pages → Create → Create Worker</li>
+      <li>Delete default code, paste the <span>worker.js</span> from this repo</li>
+      <li>Deploy → copy URL <span>(https://xxx.workers.dev)</span></li>
+      <li>Paste below ↓</li>
+    </ol>
+    <div class="setup-input">
+      <input id="wurl" type="url" placeholder="https://your-worker.workers.dev"/>
+      <button class="save-btn" onclick="saveWorker()">Save</button>
+    </div>
+    <div class="worker-status" id="wstatus"></div>
+  </div>
 
   <div class="sw">
     <div class="sb">
@@ -117,29 +133,52 @@ html,body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;fon
 
 <script>
 let token = null, tokenExp = 0, currentFilter = 'all';
+let WORKER = localStorage.getItem('sp_worker') || '';
 
-// Public CORS proxies — tried in order, first that responds wins
-const PROXIES = [
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://cors-anywhere.herokuapp.com/${url}`,
-];
-let activeProxy = parseInt(localStorage.getItem('sp_proxy_idx') || '0');
+// init
+(function init() {
+  if (WORKER) {
+    document.getElementById('setup').style.display = 'none';
+    document.getElementById('wurl').value = WORKER;
+  }
+})();
+
+function saveWorker() {
+  const val = document.getElementById('wurl').value.trim().replace(/\/$/, '');
+  if (!val || !val.startsWith('http')) {
+    document.getElementById('wstatus').textContent = 'paste a valid URL';
+    document.getElementById('wstatus').className = 'worker-status err';
+    return;
+  }
+  document.getElementById('wstatus').textContent = 'testing…';
+  document.getElementById('wstatus').className = 'worker-status';
+
+  // test the worker
+  const testUrl = val + '?url=' + encodeURIComponent('https://open.spotify.com/get_access_token?reason=transport&productType=web_player');
+  fetch(testUrl, { signal: AbortSignal.timeout(6000) })
+    .then(r => r.json())
+    .then(d => {
+      if (d.accessToken) {
+        WORKER = val;
+        localStorage.setItem('sp_worker', val);
+        document.getElementById('wstatus').textContent = '✓ connected — worker works';
+        document.getElementById('wstatus').className = 'worker-status ok';
+        setTimeout(() => { document.getElementById('setup').style.display = 'none'; }, 1200);
+      } else {
+        throw new Error('no token');
+      }
+    })
+    .catch(() => {
+      document.getElementById('wstatus').textContent = '✗ worker not reachable — check URL';
+      document.getElementById('wstatus').className = 'worker-status err';
+    });
+}
 
 async function proxyFetch(targetUrl, opts = {}) {
-  for (let i = 0; i < PROXIES.length; i++) {
-    const idx = (activeProxy + i) % PROXIES.length;
-    try {
-      const proxied = PROXIES[idx](targetUrl);
-      const r = await fetch(proxied, { ...opts, signal: AbortSignal.timeout(8000) });
-      if (r.ok || r.status === 401) {
-        activeProxy = idx;
-        localStorage.setItem('sp_proxy_idx', idx);
-        return r;
-      }
-    } catch(_) {}
-  }
-  throw new Error('All proxies failed — try again');
+  if (!WORKER) throw new Error('Set up Cloudflare Worker first ↑');
+  const url = WORKER + '?url=' + encodeURIComponent(targetUrl);
+  const r = await fetch(url, { ...opts, signal: AbortSignal.timeout(8000) });
+  return r;
 }
 
 async function getToken() {
